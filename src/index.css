@@ -1,0 +1,101 @@
+@import "tailwindcss";
+
+/* ─── تسجيل باليتة الألوان الكلاسيكية لـ Tailwind v4 ─── */
+@theme {
+  --color-brand-burgundy: #7F2020;
+  --color-brand-sage: #869B7E;
+  --color-brand-cream: #C9CAAC;
+  --color-brand-ivory: #F6F3EB;
+
+  /* توجيه الكلاسات الافتراضية لألوانك الجديدة */
+  --color-zinc-950: #121110;  /* الخلفية الليلية الدافئة */
+  --color-zinc-900: #1C1A18;  /* خلفية الكروت الصافية */
+  --color-zinc-800: #2B2825;  /* الحدود الناعمة */
+  --color-zinc-700: #403C38;
+  --color-zinc-100: #F6F3EB;
+  
+  --color-amber-400: #C9CAAC;
+  --color-amber-500: #869B7E;
+}
+
+@layer base {
+  html, body {
+    background-color: #5a5d4091 !important;
+    color: #F6F3EB !important;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  }
+}
+
+/* أنميشن الهالات الضوئية في الخلفية */
+@keyframes blob1 {
+  0%, 100% { transform: translate(0px, 0px) scale(1); }
+  33% { transform: translate(30px, -40px) scale(1.08); }
+  66% { transform: translate(-20px, 20px) scale(0.95); }
+}
+@keyframes blob2 {
+  0%, 100% { transform: translate(0px, 0px) scale(1); }
+  33% { transform: translate(-30px, 30px) scale(0.95); }
+  66% { transform: translate(20px, -20px) scale(1.08); }
+}
+
+.animate-blob1 { animation: blob1 15s infinite alternate ease-in-out; }
+.animate-blob2 { animation: blob2 18s infinite alternate ease-in-out; }
+
+/* تأثير إخفاء الماوس الأصلي لتفعيل الماوس الفاخر */
+
+/* ─── إعدادات الـ 3D Carousel للخلفية المتحركة ─── */
+.scene {
+  overflow: hidden;
+  perspective: 45em; /* زيادة العمق المنظوري */
+  mask: linear-gradient(90deg, #0000, #000 25% 75%, #0000);
+  -webkit-mask: linear-gradient(90deg, #0000, #000 25% 75%, #0000);
+}
+
+.a3d {
+  display: grid;
+  transform-style: preserve-3d;
+  animation: ry 40s linear infinite; /* دوران ناعم وبطيء ومستمر في الخلفية */
+}
+@keyframes titleRise {
+    from { opacity: 0; transform: translateY(30px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes titleFade {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+  }
+  @keyframes shine {
+    0%   { background-position: 0% center; }
+    100% { background-position: 200% center; }
+  }
+
+@keyframes ry { 
+  to { transform: rotateY(1turn); } 
+}
+
+.card-3d {
+  /* أبعاد الكروت بداخل الدائرة */
+  --w: 14em; 
+  --ba: 1turn / var(--n);
+  grid-area: 1 / 1;
+  width: var(--w);
+  aspect-ratio: 7 / 10;
+  object-fit: cover;
+  border-radius: 1rem;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+  border: 1px solid rgba(201, 202, 172, 0.15); /* إطار ناعم بلون الكريمي */
+  backface-visibility: hidden;
+  
+  /* معادلة التوزيع الدائري ثلاثي الأبعاد المأخوذة من الكود الخاص بكِ */
+  transform: 
+    rotateY(calc(var(--i) * var(--ba))) 
+    translateZ(calc(-1 * (0.5 * var(--w) + 1em) / tan(0.5 * var(--ba))));
+}
+
+/* إبطاء الحركة إذا كان المستخدم يفضل تقليل الحركة بجهازه */
+@media (prefers-reduced-motion: reduce) {
+  .a3d { animation-duration: 120s; }
+}
