@@ -61,7 +61,7 @@ export default function EventPage() {
         <div className="evt-hdr flex justify-center gap-8 mb-6 font-bold text-xs uppercase tracking-widest">
           <button
             onClick={() => setActiveTab("upload")}
-            className={`pb-2 transition-colors ${activeTab === "upload" ? "text-brand-cream border-b border-brand-cream" : "text-zinc-500"}`}
+            className={`pb-2 transition-colors ${activeTab === "upload" ? "text-brand-cream border-b border-brand-cream" : "text-black/70"}`}
           >
             Upload Photo
           </button>
@@ -70,7 +70,7 @@ export default function EventPage() {
               setActiveTab("gallery");
               setRefresh((r) => r + 1);
             }}
-            className={`pb-2 transition-colors ${activeTab === "gallery" ? "text-brand-cream border-b border-brand-cream" : "text-zinc-500"}`}
+            className={`pb-2 transition-colors ${activeTab === "gallery" ? "text-brand-cream border-b border-brand-cream" : "text-black/70"}`}
           >
             View Stream
           </button>
